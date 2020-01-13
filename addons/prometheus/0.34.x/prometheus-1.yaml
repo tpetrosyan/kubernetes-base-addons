@@ -105,6 +105,17 @@ spec:
               - path: /_prometheus/metrics
                 targetPort: 5601
                 interval: 30s
+          - name: kubeaddons-service-monitor-kommander-karma-metrics
+            selector:
+              matchLabels:
+                servicemonitor.kubeaddons.mesosphere.io/path: "kommander__monitoring__karma__metrics"
+            namespaceSelector:
+              matchNames:
+                - kommander
+            endpoints:
+              - path: /ops/portal/kommander/monitoring/karma/metrics
+                port: http
+                interval: 30s
         prometheusSpec:
           image:
             tag: v2.14.0
