@@ -38,8 +38,8 @@ spec:
       enabled: true
   chartReference:
     chart: kommander
-    repo: https://mesosphere.github.io/charts/stable
-    version: 0.3.13
+    repo: https://gracedo.github.io/charts/stable
+    version: 0.3.14
     values: |
       ---
       ingress:
