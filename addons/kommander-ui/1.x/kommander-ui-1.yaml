@@ -1,0 +1,30 @@
+---
+apiVersion: kubeaddons.mesosphere.io/v1beta1
+kind: ClusterAddon
+metadata:
+  name: kommander-ui
+  labels:
+    kubeaddons.mesosphere.io/name: kommander-ui
+  annotations:
+    catalog.kubeaddons.mesosphere.io/addon-revision: "1.191.1-1"
+    appversion.kubeaddons.mesosphere.io/kommander: "1.191.1"
+    endpoint.kubeaddons.mesosphere.io/kommander: /ops/portal/ui
+    values.chart.helm.kubeaddons.mesosphere.io/kommander: "https://raw.githubusercontent.com/mesosphere/charts/master/stable/kommander/values.yaml"
+    helmv2.kubeaddons.mesosphere.io/upgrade-strategy: '[{"upgradeFrom": "<=0.1.22", "strategy": "delete"}]'
+spec:
+  namespace: kommander-ui
+  kubernetes:
+    minSupportedVersion: v1.15.6
+  cloudProvider:
+    - name: aws
+      enabled: true
+    - name: azure
+      enabled: true
+    - name: docker
+      enabled: true
+    - name: none
+      enabled: true
+  chartReference:
+    chart: kommander-ui
+    repo: https://mesosphere.github.io/kommander/charts/
+    version: 0.3.17
