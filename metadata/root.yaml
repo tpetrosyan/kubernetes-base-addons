@@ -395,7 +395,7 @@ velero:
         title: Submit a Support Request
         link: https://d2iq.com/services-and-support
 ---
-prometheus:
+thanos:
   display_name: thanos
   description: thanos
   logo: prometheus/logo.svg
