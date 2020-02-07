@@ -120,3 +120,4 @@ disabled:
     - "nvidia"
     - "gcpdisk-csi-driver"
     - "gcpdiskprovisioner"
+    - "thanos"

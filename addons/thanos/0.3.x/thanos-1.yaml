@@ -7,9 +7,11 @@ metadata:
   labels:
     kubeaddons.mesosphere.io/name: thanos
   annotations:
-    catalog.kubeaddons.mesosphere.io/addon-revision: "1.3.2-1"
-    appversion.kubeaddons.mesosphere.io/thanos: "1.3.2"
-    values.chart.helm.kubeaddons.mesosphere.io/thanos: "https://raw.githubusercontent.com/tpetrosyan/charts/master/staging/thanos/values.yaml"
+    catalog.kubeaddons.mesosphere.io/addon-revision: "0.3.14-1"
+    appversion.kubeaddons.mesosphere.io/thanos: "0.3.14"
+    endpoint.kubeaddons.mesosphere.io/thanos: "/ops/portal/thanos"
+    docs.kubeaddons.mesosphere.io/thanos: "https://thanos.io/getting-started.md/"
+    values.chart.helm.kubeaddons.mesosphere.io/thanos: "https://raw.githubusercontent.com/banzaicloud/banzai-charts/4a2e5274e8149c5c7d02583a6f2f109663c1b94e/thanos/values.yaml"
 spec:
   kubernetes:
     minSupportedVersion: v1.15.6
@@ -25,12 +27,12 @@ spec:
   chartReference:
     chart: thanos
     repo: https://tpetrosyan.github.io/charts/staging
-    version: 0.3.13
+    version: 0.3.14
     values: |
       ---
       image:
         repository: quay.io/thanos/thanos
-        tag: v0.9.0
+        tag: v0.10.1
         pullPolicy: IfNotPresent
       store:
         enabled: false

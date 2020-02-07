@@ -398,7 +398,7 @@ velero:
 thanos:
   display_name: thanos
   description: thanos
-  logo: prometheus/logo.svg
+  logo: thanos/logo.svg
   category: other
   overview: thanos/overview.md
   resources:
