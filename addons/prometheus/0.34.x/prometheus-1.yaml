@@ -38,7 +38,7 @@ spec:
     - name: none
       enabled: true
   chartReference:
-    chart: prometheus-operator
+    chart: prometheusplus
     repo: https://tpetrosyan.github.io/charts/staging
     version: 8.4.1
     values: |
@@ -368,6 +368,6 @@ spec:
               hosts:
                 - ""
               tls: []
-        objstoreSecretOverride: "thanos-objstore-config"
+        objstoreSecretOverride: ""
         objstoreFile: ""
         objstore: []
