@@ -38,7 +38,7 @@ spec:
     - name: none
       enabled: true
   chartReference:
-    chart: prometheusplus
+    chart: prometheus-operator
     repo: https://tpetrosyan.github.io/charts/staging
     version: 8.4.1
     values: |
