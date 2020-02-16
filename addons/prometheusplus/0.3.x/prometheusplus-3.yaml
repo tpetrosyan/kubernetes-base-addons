@@ -2,7 +2,7 @@
 apiVersion: kubeaddons.mesosphere.io/v1beta1
 kind: Addon
 metadata:
-  name: prometheus
+  name: prometheusplus
   namespace: kubeaddons
   labels:
     kubeaddons.mesosphere.io/name: prometheus
@@ -41,8 +41,8 @@ spec:
     - name: none
       enabled: true
   chartReference:
-    chart: prometheus-operator
-    repo: https://mesosphere.github.io/charts/staging
+    chart: prometheusplus
+    repo: https://tpetrosyan.github.io/charts/staging
     version: 8.3.7
     values: |
       ---
