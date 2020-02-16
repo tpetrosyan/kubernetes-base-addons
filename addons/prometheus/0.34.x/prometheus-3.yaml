@@ -2,7 +2,7 @@
 apiVersion: kubeaddons.mesosphere.io/v1beta1
 kind: Addon
 metadata:
-  name: prometheusplus
+  name: prometheus
   namespace: kubeaddons
   labels:
     kubeaddons.mesosphere.io/name: prometheus
@@ -12,7 +12,6 @@ metadata:
   annotations:
     catalog.kubeaddons.mesosphere.io/addon-revision: "0.34.0-3"
     appversion.kubeaddons.mesosphere.io/prometheus-operator: "0.34.0"
-    appversion.kubeaddons.mesosphere.io/prometheusplus: "0.34.0"
     appversion.kubeaddons.mesosphere.io/prometheus: "2.14.0"
     appversion.kubeaddons.mesosphere.io/alertmanager: "0.19.0"
     appversion.kubeaddons.mesosphere.io/grafana: "6.4.2"
