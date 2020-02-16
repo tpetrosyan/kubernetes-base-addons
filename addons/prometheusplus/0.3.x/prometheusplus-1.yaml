@@ -5,49 +5,6 @@ metadata:
   name: prometheusplus
   namespace: kubeaddons
   labels:
-    kubeaddons.mesosphere.io/name: prometheusplus
-  annotations:
-    catalog.kubeaddons.mesosphere.io/addon-revision: "0.3.14-1"
-    appversion.kubeaddons.mesosphere.io/prometheusplus: "0.3.14"
-    appversion.kubeaddons.mesosphere.io/thanos: "0.3.14"
-    appversion.kubeaddons.mesosphere.io/prometheus-operator: "0.34.0"
-    appversion.kubeaddons.mesosphere.io/prometheus: "2.14.0"
-    appversion.kubeaddons.mesosphere.io/alertmanager: "0.19.0"
-    appversion.kubeaddons.mesosphere.io/grafana: "6.4.2"
-    endpoint.kubeaddons.mesosphere.io/prometheus: "/ops/portal/prometheus"
-    endpoint.kubeaddons.mesosphere.io/alertmanager: "/ops/portal/alertmanager"
-    endpoint.kubeaddons.mesosphere.io/grafana: "/ops/portal/grafana"
-    endpoint.kubeaddons.mesosphere.io/prometheusplus: "/ops/portal/thanos"
-    docs.kubeaddons.mesosphere.io/prometheus: "https://prometheus.io/docs/introduction/overview/"
-    docs.kubeaddons.mesosphere.io/grafana: "https://grafana.com/docs/"
-    docs.kubeaddons.mesosphere.io/alertmanager: "https://prometheus.io/docs/alerting/alertmanager/"
-    docs.kubeaddons.mesosphere.io/prometheusplus: "https://thanos.io/getting-started.md/"
-    values.chart.helm.kubeaddons.mesosphere.io/prometheusplus: "https://raw.githubusercontent.com/banzaicloud/banzai-charts/4a2e5274e8149c5c7d02583a6f2f109663c1b94e/thanos/values.yaml"
-spec:
-  kubernetes:
-    minSupportedVersion: v1.15.6
-  cloudProvider:
-    - name: aws
-      enabled: true
-    - name: azure
-      enabled: true
-    - name: docker
-      enabled: false
-    - name: none
-      enabled: true
-  chartReference:
-    chart: prometheusplus
-    repo: https://tpetrosyan.github.io/charts/staging
-    version: 8.3.11
-    values: |
-      ---
----
-apiVersion: kubeaddons.mesosphere.io/v1beta1
-kind: Addon
-metadata:
-  name: prometheusplus
-  namespace: kubeaddons
-  labels:
     kubeaddons.mesosphere.io/name: prometheus
     # TODO: we're temporarily supporting dependency on an existing default storage class
     # on the cluster, this hack will trigger re-queue on Addons until one exists.
