@@ -19,12 +19,11 @@ metadata:
     endpoint.kubeaddons.mesosphere.io/prometheus: "/ops/portal/prometheus"
     endpoint.kubeaddons.mesosphere.io/alertmanager: "/ops/portal/alertmanager"
     endpoint.kubeaddons.mesosphere.io/grafana: "/ops/portal/grafana"
+    endpoint.kubeaddons.mesosphere.io/thanos: "/ops/portal/thanos"
     docs.kubeaddons.mesosphere.io/prometheus: "https://prometheus.io/docs/introduction/overview/"
     docs.kubeaddons.mesosphere.io/grafana: "https://grafana.com/docs/"
     docs.kubeaddons.mesosphere.io/alertmanager: "https://prometheus.io/docs/alerting/alertmanager/"
     values.chart.helm.kubeaddons.mesosphere.io/prometheus: "https://raw.githubusercontent.com/mesosphere/charts/a370c215c08ca7e50055902177141554de5444e6/staging/prometheus-operator/values.yaml"
-    # The prometheus-operator chart from prior Konvoy releases can't be upgraded to this chart version.
-    # See https://jira.d2iq.com/browse/DCOS-62924.
     helmv2.kubeaddons.mesosphere.io/upgrade-strategy: '[{"upgradeFrom": "<=5.19.7", "strategy": "delete"}]'
 spec:
   kubernetes:
@@ -33,8 +32,6 @@ spec:
     - name: aws
       enabled: true
     - name: azure
-      enabled: true
-    - name: gcp
       enabled: true
     - name: docker
       enabled: false
@@ -322,10 +319,6 @@ spec:
           # TODO remove once https://github.com/containerd/containerd/issues/3756 is resolved
           repository: quay.io/coreos/kube-state-metrics
       thanos:
-        image:
-          repository: quay.io/thanos/thanos
-          tag: v0.10.1
-          pullPolicy: IfNotPresent
         store:
           enabled: false
         bucket:
@@ -354,7 +347,10 @@ spec:
           serviceDiscoveryInterval: 5m
           # Add extra arguments to the compact service
           extraArgs:
-          - "--grpc-client-server-name=server.thanos.localhost.localdomain"
+            - "--store=prometheus-kubeaddons-prom-prometheus.kubeaddons.svc:10901"
+            - "--store=thanos-kubeaddons-store-grpc.kubeaddons.svc:10901"
+            - "--query.auto-downsampling"
+            - "--query.partial-response"
           http:
             service:
               labels:
@@ -372,6 +368,6 @@ spec:
               hosts:
                 - ""
               tls: []
-        objstoreSecretOverride: ""
+        objstoreSecretOverride: "thanos-objstore-config"
         objstoreFile: ""
         objstore: []
