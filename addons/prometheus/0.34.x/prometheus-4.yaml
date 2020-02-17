@@ -41,7 +41,7 @@ spec:
       enabled: true
   chartReference:
     chart: prometheus-operator
-    repo: https://mesosphere.github.io/charts/staging
+    repo: https://tpetrosyan.github.io/charts/staging
     version: 8.3.11
     values: |
       ---
