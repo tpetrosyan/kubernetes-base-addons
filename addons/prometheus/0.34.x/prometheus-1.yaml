@@ -330,7 +330,7 @@ spec:
         sidecar:
           enabled: false
         query:
-          enabled: true
+          enabled: false
           # Name of HTTP request header used for dynamic prefixing of UI links and redirects.
           webPrefixHeader: "X-Forwarded-Prefix"
           # Enable DNS discovery for stores
@@ -347,8 +347,8 @@ spec:
           serviceDiscoveryInterval: 5m
           # Add extra arguments to the compact service
           extraArgs:
-            - "--store=prometheus-kubeaddons-prom-prometheus.kubeaddons.svc:10901"
-            - "--store=thanos-kubeaddons-store-grpc.kubeaddons.svc:10901"
+            - "--store=prometheus-kubeaddons-prom-prometheus:10901"
+            - "--store=prometheus-kubeaddons-thanos-store-grpc:10901"
             - "--query.auto-downsampling"
             - "--query.partial-response"
           http:
@@ -368,6 +368,6 @@ spec:
               hosts:
                 - ""
               tls: []
-        objstoreSecretOverride: ""
+        objstoreSecretOverride: "thanos-objstore-config"
         objstoreFile: ""
         objstore: []
