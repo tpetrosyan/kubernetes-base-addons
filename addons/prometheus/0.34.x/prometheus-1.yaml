@@ -12,7 +12,6 @@ metadata:
   annotations:
     catalog.kubeaddons.mesosphere.io/addon-revision: "0.34.0-1"
     appversion.kubeaddons.mesosphere.io/prometheus-operator: "0.34.0"
-    appversion.kubeaddons.mesosphere.io/prometheusplus: "8.4.1"
     appversion.kubeaddons.mesosphere.io/prometheus: "2.14.0"
     appversion.kubeaddons.mesosphere.io/alertmanager: "0.19.0"
     appversion.kubeaddons.mesosphere.io/grafana: "6.4.2"
@@ -20,7 +19,6 @@ metadata:
     endpoint.kubeaddons.mesosphere.io/prometheus: "/ops/portal/prometheus"
     endpoint.kubeaddons.mesosphere.io/alertmanager: "/ops/portal/alertmanager"
     endpoint.kubeaddons.mesosphere.io/grafana: "/ops/portal/grafana"
-    endpoint.kubeaddons.mesosphere.io/thanos: "/ops/portal/thanos"
     docs.kubeaddons.mesosphere.io/prometheus: "https://prometheus.io/docs/introduction/overview/"
     docs.kubeaddons.mesosphere.io/grafana: "https://grafana.com/docs/"
     docs.kubeaddons.mesosphere.io/alertmanager: "https://prometheus.io/docs/alerting/alertmanager/"
@@ -39,7 +37,7 @@ spec:
     - name: none
       enabled: true
   chartReference:
-    chart: prometheusplus
+    chart: prometheus-operator
     repo: https://tpetrosyan.github.io/charts/staging
     version: 8.4.1
     values: |
@@ -320,6 +318,7 @@ spec:
           # TODO remove once https://github.com/containerd/containerd/issues/3756 is resolved
           repository: quay.io/coreos/kube-state-metrics
       thanos:
+        enabled: false
         store:
           enabled: false
         bucket:
