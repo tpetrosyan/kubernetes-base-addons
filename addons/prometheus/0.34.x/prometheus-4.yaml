@@ -354,3 +354,12 @@ spec:
           # containerd mirror functionality does not support pulling these images
           # TODO remove once https://github.com/containerd/containerd/issues/3756 is resolved
           repository: quay.io/coreos/kube-state-metrics
+      thanos:
+        query:
+          enabled: false
+        store:
+          enabled: false
+        compact:
+          enabled: false
+        bucket:
+          enabled: false
