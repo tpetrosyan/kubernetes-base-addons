@@ -19,7 +19,7 @@ metadata:
     endpoint.kubeaddons.mesosphere.io/prometheus: "/ops/portal/prometheus"
     endpoint.kubeaddons.mesosphere.io/alertmanager: "/ops/portal/alertmanager"
     endpoint.kubeaddons.mesosphere.io/grafana: "/ops/portal/grafana"
-    endpoint.kubeaddons.mesosphere.io/thanos: "/ops/portal/thanos"
+    endpoint.kubeaddons.mesosphere.io/thanos: "/ops/portal/thanos/query"
     docs.kubeaddons.mesosphere.io/prometheus: "https://prometheus.io/docs/introduction/overview/"
     docs.kubeaddons.mesosphere.io/grafana: "https://grafana.com/docs/"
     docs.kubeaddons.mesosphere.io/alertmanager: "https://prometheus.io/docs/alerting/alertmanager/"
@@ -359,6 +359,20 @@ spec:
       thanos:
         query:
           enabled: false
+          http:
+            service:
+              labels:
+                servicemonitor.kubeaddons.mesosphere.io/path: "metrics"
+            ingress:
+              enabled: true
+              annotations:
+                kubernetes.io/ingress.class: "traefik"
+                traefik.frontend.rule.type: "PathPrefixStrip"
+                traefik.ingress.kubernetes.io/auth-response-headers: "X-Forwarded-User"
+                traefik.ingress.kubernetes.io/auth-type: "forward"
+                traefik.ingress.kubernetes.io/auth-url: "http://traefik-forward-auth-kubeaddons.kubeaddons.svc.cluster.local:4181/"
+                traefik.ingress.kubernetes.io/priority: "2"
+              path: "/ops/portal/thanos/query"
         store:
           enabled: false
         compact:
