@@ -44,7 +44,7 @@ spec:
   chartReference:
     chart: prometheus-thanos
     repo: https://tpetrosyan.github.io/charts/staging
-    version: 8.7.2
+    version: 8.7.3
     values: |
       ---
       defaultRules:
